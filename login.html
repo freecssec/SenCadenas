@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="auth.css">
     <link rel="stylesheet" href="login-extra.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body class="auth-page">
 
@@ -148,6 +149,12 @@
                     <div class="form-check" style="margin-bottom: 24px;">
                         <input type="checkbox" id="remember" name="remember">
                         <label for="remember">Se souvenir de moi pendant 30 jours</label>
+                    </div>
+
+                    <!-- Cloudflare Turnstile -->
+                    <div class="cf-turnstile" 
+                         data-sitekey="0x4AAAAAADtk8k1IKRckW6cI"
+                         style="margin-bottom: 16px;">
                     </div>
 
                     <!-- Bouton submit -->
