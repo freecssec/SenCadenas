@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se connecter | SenCadenas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="login-extra.css">
+</head>
+<body class="auth-page">
+
+    <!-- ── Navbar légère ── -->
+    <header class="auth-navbar">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z" fill="#00853f" opacity="0.2"/>
+                    <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z" stroke="#00853f" stroke-width="1.5" fill="none"/>
+                    <rect x="9" y="10" width="6" height="5" rx="1" fill="#00853f"/>
+                    <path d="M10 10V8.5a2 2 0 014 0V10" stroke="#00853f" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <span class="logo-text">Sen<span class="logo-accent">Cadenas</span></span>
+        </a>
+        <a href="register.html" class="btn-primary" style="font-size:0.85rem; padding:8px 18px;">S'inscrire</a>
+    </header>
+
+    <!-- ── Layout principal ── -->
+    <div class="auth-layout">
+
+        <!-- Panneau gauche : branding -->
+        <aside class="auth-side">
+            <div class="auth-side-content">
+                <div class="side-badge">
+                    <span class="badge-dot"></span> Connexion sécurisée
+                </div>
+                <h2>Bon retour<br>dans votre coffre.</h2>
+                <p>Votre mot de passe maître est la seule clé qui ouvre votre coffre. Nous ne pouvons pas y accéder à votre place.</p>
+
+                <!-- Illustration cadenas animé -->
+                <div class="login-lock-visual">
+                    <div class="llv-ring llv-ring-1"></div>
+                    <div class="llv-ring llv-ring-2"></div>
+                    <div class="llv-core">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z"
+                                fill="rgba(0,133,63,0.15)" stroke="#00853f" stroke-width="1.2"/>
+                            <rect x="8.5" y="10.5" width="7" height="6" rx="1" fill="#00853f"/>
+                            <path d="M10 10.5V8.5a2 2 0 014 0v2" stroke="#00853f" stroke-width="1.5" stroke-linecap="round"/>
+                            <circle cx="12" cy="13.5" r="1" fill="white"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <ul class="side-features" style="margin-top: 32px;">
+                    <li>
+                        <div class="side-icon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00853f" stroke-width="2"><path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z"/></svg>
+                        </div>
+                        Votre coffre reste chiffré en transit
+                    </li>
+                    <li>
+                        <div class="side-icon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00853f" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                        </div>
+                        Blocage après 5 tentatives échouées
+                    </li>
+                    <li>
+                        <div class="side-icon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00853f" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                        </div>
+                        Déconnexion automatique par inactivité
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Panneau droit : formulaire -->
+        <main class="auth-form-panel">
+            <div class="auth-card" id="login-card">
+                <div class="auth-card-header">
+                    <h1>Connexion</h1>
+                    <p>Pas encore de compte ? <a href="register.html">S'inscrire gratuitement</a></p>
+                </div>
+
+                <!-- Alerte erreur / succès -->
+                <div class="auth-alert hidden" id="alert-box">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+                    </svg>
+                    <span id="alert-text"></span>
+                </div>
+
+                <!-- Avertissement tentatives -->
+                <div class="attempts-warning hidden" id="attempts-warning">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <span id="attempts-text">Tentatives restantes : <strong id="attempts-count">4</strong></span>
+                </div>
+
+                <form id="login-form" novalidate>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Adresse e-mail</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 7 10-7"/>
+                            </svg>
+                            <input type="email" id="email" name="email"
+                                placeholder="VieuxBachir@exemple.sn"
+                                autocomplete="email" required>
+                        </div>
+                        <span class="field-error" id="err-email"></span>
+                    </div>
+
+                    <!-- Mot de passe maître -->
+                    <div class="form-group">
+                        <label for="master-password">
+                            Mot de passe maître
+                        </label>
+                        <div class="forgot-link">
+                            <a href="forgot.html">Mot de passe oublié ?</a>
+                        </div>
+                        <div class="input-wrapper" style="margin-top: 8px;">
+                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+                            </svg>
+                            <input type="password" id="master-password" name="master-password"
+                                placeholder="Votre mot de passe maître"
+                                autocomplete="current-password" required>
+                            <button type="button" class="toggle-password" aria-label="Afficher le mot de passe" data-target="master-password">
+                                <svg class="eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <span class="field-error" id="err-password"></span>
+                    </div>
+
+                    <!-- Se souvenir de moi -->
+                    <div class="form-check" style="margin-bottom: 24px;">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Se souvenir de moi pendant 30 jours</label>
+                    </div>
+
+                    <!-- Bouton submit -->
+                    <button type="submit" class="btn-primary large full-width" id="submit-btn">
+                        <span id="btn-text">Ouvrir mon coffre</span>
+                        <svg id="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                        <svg id="btn-spinner" class="spinner hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                        </svg>
+                    </button>
+
+                </form>
+
+                <!-- Lien inscription bas -->
+                <p class="auth-footer-note">
+                    Nouveau sur SenCadenas ? <a href="register.html">Créer un compte gratuit →</a>
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

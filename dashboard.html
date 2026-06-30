@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Coffre | SenCadenas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="dashboard-body">
+
+<!--SIDEBAR-->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z" fill="#00853f" opacity="0.2"/>
+                    <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z" stroke="#00853f" stroke-width="1.5" fill="none"/>
+                    <rect x="9" y="10" width="6" height="5" rx="1" fill="#00853f"/>
+                    <path d="M10 10V8.5a2 2 0 014 0V10" stroke="#00853f" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <span class="logo-text">Sen<span class="logo-accent">Cadenas</span></span>
+        </a>
+        <button class="sidebar-collapse" id="sidebar-collapse" aria-label="Réduire">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Search -->
+    <div class="sidebar-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+        <span class="nav-section-label">Coffre</span>
+        <button class="nav-item active" data-filter="all">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            <span>Tous les éléments</span>
+            <span class="nav-count" id="count-all">0</span>
+        </button>
+        <button class="nav-item" data-filter="favorite">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span>Favoris</span>
+            <span class="nav-count" id="count-fav">0</span>
+        </button>
+
+        <span class="nav-section-label" style="margin-top:8px;">Catégories</span>
+        <button class="nav-item" data-filter="login">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            <span>Mots de passe</span>
+            <span class="nav-count" id="count-login">0</span>
+        </button>
+        <button class="nav-item" data-filter="card">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+            <span>Cartes bancaires</span>
+            <span class="nav-count" id="count-card">0</span>
+        </button>
+        <button class="nav-item" data-filter="note">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span>Notes sécurisées</span>
+            <span class="nav-count" id="count-note">0</span>
+        </button>
+    </nav>
+
+    <!-- User -->
+    <div class="sidebar-footer">
+        <div class="sidebar-user">
+            <div class="user-avatar">A</div>
+            <div class="user-info">
+                <span class="user-name">Aminata Diallo</span>
+                <span class="user-email">aminata@gmail.com</span>
+            </div>
+        </div>
+        <a href="settings.html" class="sidebar-settings-btn" title="Paramètres">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+            </svg>
+        </a>
+        <button class="sidebar-logout-btn" id="logout-btn" title="Déconnexion">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
+            </svg>
+        </button>
+    </div>
+</aside>
+
+<!-- ═══════════════════ MAIN ═══════════════════ -->
+<div class="dashboard-main" id="dashboard-main">
+
+    <!-- Topbar -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12h18M3 6h18M3 18h18"/>
+                </svg>
+            </button>
+            <div class="topbar-title" id="topbar-title">Tous les éléments</div>
+        </div>
+        <div class="topbar-right">
+            <!-- Indicateur sécurité -->
+            <div class="security-score" id="security-score-badge">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z"/>
+                </svg>
+                <span id="score-label">Score : --</span>
+            </div>
+            <button class="btn-primary" id="add-btn" style="padding:9px 18px;font-size:0.85rem;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Ajouter
+            </button>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <div class="vault-content" id="vault-content">
+
+        <!-- Stats rapides -->
+        <div class="quick-stats" id="quick-stats">
+            <div class="stat-card">
+                <div class="stat-card-icon green">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                </div>
+                <div>
+                    <span class="stat-card-number" id="stat-total">0</span>
+                    <span class="stat-card-label">Éléments stockés</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-icon yellow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <div>
+                    <span class="stat-card-number" id="stat-weak">0</span>
+                    <span class="stat-card-label">Mots de passe faibles</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-icon red">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4M12 16h.01"/></svg>
+                </div>
+                <div>
+                    <span class="stat-card-number" id="stat-reused">0</span>
+                    <span class="stat-card-label">Mots de passe réutilisés</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-icon blue">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <div>
+                    <span class="stat-card-number" id="stat-strong">0</span>
+                    <span class="stat-card-label">Mots de passe forts</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Liste des entrées -->
+        <div class="entries-header">
+            <span class="entries-count-label" id="entries-count-label">— éléments</span>
+            <div class="entries-sort">
+                <select id="sort-select">
+                    <option value="name">Nom A→Z</option>
+                    <option value="name-desc">Nom Z→A</option>
+                    <option value="recent">Plus récents</option>
+                    <option value="strength">Force ↑</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="entries-list" id="entries-list">
+            <!-- Injecté par JS -->
+        </div>
+
+        <div class="empty-state hidden" id="empty-state">
+            <div class="empty-icon">🔐</div>
+            <h3>Aucun élément trouvé</h3>
+            <p>Ajoutez votre premier mot de passe ou affinez votre recherche.</p>
+            <button class="btn-primary" onclick="openModal('add')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Ajouter un élément
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL AJOUT / ÉDITION -->
+<div class="modal-overlay hidden" id="modal-overlay">
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <h2 id="modal-title">Ajouter un élément</h2>
+            <button class="modal-close" id="modal-close">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+
+        <!-- Onglets type -->
+        <div class="modal-tabs">
+            <button class="modal-tab active" data-type="login"> Mot de passe</button>
+            <button class="modal-tab" data-type="card"> Carte</button>
+            <button class="modal-tab" data-type="note"> Note</button>
+        </div>
+
+        <div class="modal-body">
+
+            <!-- Champs communs -->
+            <div class="form-group">
+                <label>Nom / Site</label>
+                <div class="input-wrapper">
+                    <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+                    <input type="text" id="f-name" placeholder="ex: Facebook, Wave, Gmail...">
+                </div>
+            </div>
+
+            <!-- ── Champs LOGIN ── -->
+            <div id="fields-login">
+                <div class="form-group">
+                    <label>Identifiant / Email</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <input type="text" id="f-username" placeholder="bach@exemple.sn">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Mot de passe
+                        <button type="button" class="label-hint" id="generate-btn"> Générer</button>
+                    </label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                        <input type="password" id="f-password" placeholder="Mot de passe">
+                        <button type="button" class="toggle-password" data-target="f-password">
+                            <svg class="eye-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                    </div>
+                    <!-- Jauge NIST -->
+                    <div class="strength-meter" id="modal-strength-meter">
+                        <div class="strength-bar"><div class="strength-fill" id="modal-strength-fill"></div></div>
+                        <span class="strength-label" id="modal-strength-label">—</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>URL du site (optionnel)</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                        <input type="url" id="f-url" placeholder="https://facebook.com">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Champs CARD ── -->
+            <div id="fields-card" class="hidden">
+                <div class="form-group">
+                    <label>Titulaire de la carte</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <input type="text" id="f-cardholder" placeholder="ex: Bachir Gueye">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Numéro de carte</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+                        <input type="text" id="f-cardnumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Expiration</label>
+                        <input type="text" id="f-expiry" placeholder="MM/AA" maxlength="5">
+                    </div>
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input type="password" id="f-cvv" placeholder="•••" maxlength="4">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Champs NOTE ── -->
+            <div id="fields-note" class="hidden">
+                <div class="form-group">
+                    <label>Contenu de la note</label>
+                    <textarea id="f-note" placeholder="Contenu chiffré de votre note..." rows="5"></textarea>
+                </div>
+            </div>
+
+            <!-- Favori -->
+            <div class="form-check modal-fav-check">
+                <input type="checkbox" id="f-favorite">
+                <label for="f-favorite"> Ajouter aux favoris</label>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-outline" id="modal-cancel">Annuler</button>
+            <button class="btn-primary" id="modal-save">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                Enregistrer
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════ MODAL GÉNÉRATEUR ═══════════════════ -->
+<div class="modal-overlay hidden" id="gen-overlay">
+    <div class="modal modal-gen" id="gen-modal">
+        <div class="modal-header">
+            <h2> Générateur NIST-2024</h2>
+            <button class="modal-close" id="gen-close">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <!-- Info NIST -->
+            <div class="nist-banner">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00853f" stroke-width="2"><path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z"/></svg>
+                <span>Conforme NIST SP 800-63B Rev.4 — priorité à la <strong>longueur</strong>, pas à la complexité artificielle.</span>
+            </div>
+
+            <!-- Tabs mode -->
+            <div class="gen-tabs">
+                <button class="gen-tab active" data-mode="passphrase"> Phrase de passe</button>
+                <button class="gen-tab" data-mode="random"> Aléatoire</button>
+            </div>
+
+            <!-- Mode passphrase -->
+            <div id="gen-passphrase">
+                <p class="gen-hint">Une suite de mots aléatoires — facile à mémoriser, très difficile à craquer.</p>
+                <div class="form-group">
+                    <label>Nombre de mots : <strong id="words-count-label">4</strong></label>
+                    <input type="range" id="words-count" min="3" max="8" value="4" class="range-slider">
+                </div>
+                <div class="form-group">
+                    <label>Séparateur</label>
+                    <div class="sep-options">
+                        <button class="sep-btn active" data-sep="-">tiret  —</button>
+                        <button class="sep-btn" data-sep=".">point  .</button>
+                        <button class="sep-btn" data-sep=" ">espace</button>
+                        <button class="sep-btn" data-sep="_">underscore _</button>
+                    </div>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="pp-capitalize" checked>
+                    <label for="pp-capitalize">Majuscule sur chaque mot</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="pp-number" checked>
+                    <label for="pp-number">Ajouter un nombre à la fin</label>
+                </div>
+            </div>
+
+            <!-- Mode random -->
+            <div id="gen-random" class="hidden">
+                <p class="gen-hint">Conforme NIST : longueur ≥ 15 caractères, aucune règle de complexité imposée.</p>
+                <div class="form-group">
+                    <label>Longueur : <strong id="rand-length-label">20</strong> caractères</label>
+                    <input type="range" id="rand-length" min="15" max="64" value="20" class="range-slider">
+                </div>
+                <div class="gen-char-opts">
+                    <div class="form-check"><input type="checkbox" id="rc-upper" checked><label for="rc-upper">Majuscules (A-Z)</label></div>
+                    <div class="form-check"><input type="checkbox" id="rc-lower" checked><label for="rc-lower">Minuscules (a-z)</label></div>
+                    <div class="form-check"><input type="checkbox" id="rc-digits" checked><label for="rc-digits">Chiffres (0-9)</label></div>
+                    <div class="form-check"><input type="checkbox" id="rc-symbols" checked><label for="rc-symbols">Symboles (!@#...)</label></div>
+                </div>
+            </div>
+
+            <!-- Résultat -->
+            <div class="gen-result">
+                <div class="gen-password-display" id="gen-password-display">—</div>
+                <div class="gen-result-actions">
+                    <button class="gen-action-btn" id="gen-refresh" title="Régénérer">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+                    </button>
+                    <button class="gen-action-btn" id="gen-copy" title="Copier">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Entropie -->
+            <div class="entropy-info" id="entropy-info">
+                <div class="entropy-row">
+                    <span>Entropie estimée</span>
+                    <strong id="entropy-bits">— bits</strong>
+                </div>
+                <div class="entropy-row">
+                    <span>Résistance brute-force</span>
+                    <strong id="entropy-time">—</strong>
+                </div>
+                <div class="entropy-bar-wrap">
+                    <div class="entropy-bar-fill" id="entropy-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-outline" id="gen-cancel">Annuler</button>
+            <button class="btn-primary" id="gen-use">
+                Utiliser ce mot de passe
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DÉTAIL -->
+<div class="modal-overlay hidden" id="detail-overlay">
+    <div class="modal modal-detail" id="detail-modal">
+        <div class="modal-header">
+            <div class="detail-title-row">
+                <div class="detail-icon" id="detail-icon"></div>
+                <div>
+                    <h2 id="detail-name">—</h2>
+                    <span id="detail-type-badge" class="type-badge">—</span>
+                </div>
+            </div>
+            <button class="modal-close" id="detail-close">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <div class="modal-body" id="detail-body">
+            <!-- injecté par JS -->
+        </div>
+        <div class="modal-footer">
+            <button class="btn-outline danger" id="detail-delete">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+                Supprimer
+            </button>
+            <button class="btn-primary" id="detail-edit">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                Modifier
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast notification -->
+<div class="toast hidden" id="toast">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+    <span id="toast-text">Copié !</span>
+</div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramètres | SenCadenas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body class="dashboard-body">
+
+<!--SIDEBAR (identique dashboard)-->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z" fill="#00853f" opacity="0.2"/>
+                    <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z" stroke="#00853f" stroke-width="1.5" fill="none"/>
+                    <rect x="9" y="10" width="6" height="5" rx="1" fill="#00853f"/>
+                    <path d="M10 10V8.5a2 2 0 014 0V10" stroke="#00853f" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <span class="logo-text">Sen<span class="logo-accent">Cadenas</span></span>
+        </a>
+        <button class="sidebar-collapse" id="sidebar-collapse">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+    </div>
+
+    <nav class="sidebar-nav" style="padding-top:12px">
+        <a href="dashboard.html" class="nav-item" style="text-decoration:none">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            <span>Mon coffre</span>
+        </a>
+        <button class="nav-item active" data-section="profile">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Profil</span>
+        </button>
+        <button class="nav-item" data-section="security">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z"/></svg>
+            <span>Sécurité</span>
+        </button>
+        <button class="nav-item" data-section="twofa">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+            <span>Double authentification</span>
+        </button>
+        <button class="nav-item" data-section="sessions">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <span>Sessions actives</span>
+        </button>
+        <button class="nav-item" data-section="danger">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Zone de danger</span>
+        </button>
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="sidebar-user">
+            <div class="user-avatar">A</div>
+            <div class="user-info">
+                <span class="user-name">Aminata Diallo</span>
+                <span class="user-email">aminata@gmail.com</span>
+            </div>
+        </div>
+        <button class="sidebar-logout-btn" id="logout-btn" title="Déconnexion">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+        </button>
+    </div>
+</aside>
+
+<!-- ═══════════════════ MAIN ═══════════════════ -->
+<div class="dashboard-main">
+
+    <header class="topbar">
+        <div class="topbar-left">
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+            </button>
+            <div class="topbar-title" id="topbar-title">Paramètres</div>
+        </div>
+        <div class="topbar-right">
+            <a href="dashboard.html" class="btn-outline" style="font-size:0.82rem;padding:8px 16px;">
+                ← Retour au coffre
+            </a>
+        </div>
+    </header>
+
+    <div class="settings-layout">
+
+        <!-- ═══ SECTION PROFIL ═══ -->
+        <section class="settings-section active" id="section-profile">
+            <div class="settings-section-header">
+                <h2>Profil</h2>
+                <p>Informations de votre compte SenCadenas.</p>
+            </div>
+
+            <div class="settings-card">
+                <div class="avatar-row">
+                    <div class="avatar-big" id="avatar-display">A</div>
+                    <div>
+                        <p class="avatar-name" id="avatar-name-display">Aminata Diallo</p>
+                        <p class="avatar-email" id="avatar-email-display">aminata@gmail.com</p>
+                        <button class="btn-outline btn-sm" id="change-avatar-btn">Changer l'initiale</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <h3 class="card-title">Informations personnelles</h3>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label>Nom complet</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <input type="text" id="p-fullname" value="Aminata Diallo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Adresse e-mail</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 7 10-7"/></svg>
+                            <input type="email" id="p-email" value="aminata@gmail.com">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn-primary" id="save-profile-btn">Enregistrer les modifications</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SECTION SÉCURITÉ ═══ -->
+        <section class="settings-section hidden" id="section-security">
+            <div class="settings-section-header">
+                <h2>Sécurité</h2>
+                <p>Gérez votre mot de passe maître et les options de sécurité.</p>
+            </div>
+
+            <!-- Changer mot de passe maître -->
+            <div class="settings-card">
+                <h3 class="card-title">Changer le mot de passe maître</h3>
+                <p class="card-desc">Votre mot de passe maître chiffre tout votre coffre. Choisissez-en un fort et unique.</p>
+
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label>Mot de passe maître actuel</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                            <input type="password" id="s-current-pwd" placeholder="Mot de passe actuel">
+                            <button type="button" class="toggle-password" data-target="s-current-pwd">
+                                <svg class="eye-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nouveau mot de passe maître</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                            <input type="password" id="s-new-pwd" placeholder="Minimum 15 caractères (NIST)">
+                            <button type="button" class="toggle-password" data-target="s-new-pwd">
+                                <svg class="eye-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                        <div class="strength-meter" style="margin-top:8px">
+                            <div class="strength-bar"><div class="strength-fill" id="s-strength-fill"></div></div>
+                            <span class="strength-label" id="s-strength-label">—</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirmer le nouveau mot de passe</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                            <input type="password" id="s-confirm-pwd" placeholder="Répétez le nouveau mot de passe">
+                        </div>
+                        <span class="field-error" id="s-confirm-err"></span>
+                    </div>
+                    <div class="nist-info-box">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                        <span>NIST SP 800-63B Rev.4 recommande ≥ 15 caractères. La longueur prime sur la complexité.</span>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn-primary" id="save-pwd-btn">Mettre à jour le mot de passe</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Options de sécurité -->
+            <div class="settings-card">
+                <h3 class="card-title">Options de sécurité</h3>
+                <div class="toggle-list">
+                    <div class="toggle-row">
+                        <div>
+                            <span class="toggle-label">Déconnexion automatique</span>
+                            <span class="toggle-desc">Se déconnecter après 15 min d'inactivité</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="auto-logout" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <div>
+                            <span class="toggle-label">Effacement presse-papier</span>
+                            <span class="toggle-desc">Vider automatiquement après 30 secondes</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="clear-clipboard" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <div>
+                            <span class="toggle-label">Alertes de compromission</span>
+                            <span class="toggle-desc">Être notifié si un site est piraté</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="breach-alerts" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SECTION 2FA ═══ -->
+        <section class="settings-section hidden" id="section-twofa">
+            <div class="settings-section-header">
+                <h2>Double authentification (2FA)</h2>
+                <p>Ajoutez une couche de sécurité supplémentaire à votre compte.</p>
+            </div>
+
+            <div class="settings-card">
+                <div class="twofa-status" id="twofa-status-card">
+                    <div class="twofa-status-icon off" id="twofa-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                    </div>
+                    <div>
+                        <h3 id="twofa-status-title">2FA désactivé</h3>
+                        <p id="twofa-status-desc">Votre compte n'est protégé que par votre mot de passe maître.</p>
+                    </div>
+                    <button class="btn-primary" id="twofa-toggle-btn">Activer le 2FA</button>
+                </div>
+            </div>
+
+            <!-- Setup TOTP (caché par défaut) -->
+            <div class="settings-card hidden" id="twofa-setup-card">
+                <h3 class="card-title">Configuration TOTP (Google Authenticator, Authy...)</h3>
+                <div class="twofa-setup">
+                    <div class="twofa-qr">
+                        <!-- QR code simulé -->
+                        <div class="qr-placeholder" id="qr-placeholder">
+                            <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="120" height="120" fill="#0d1e35"/>
+                                <!-- Pattern QR simulé -->
+                                <rect x="10" y="10" width="30" height="30" rx="3" fill="none" stroke="#00853f" stroke-width="3"/>
+                                <rect x="15" y="15" width="20" height="20" rx="1" fill="#00853f" opacity="0.5"/>
+                                <rect x="80" y="10" width="30" height="30" rx="3" fill="none" stroke="#00853f" stroke-width="3"/>
+                                <rect x="85" y="15" width="20" height="20" rx="1" fill="#00853f" opacity="0.5"/>
+                                <rect x="10" y="80" width="30" height="30" rx="3" fill="none" stroke="#00853f" stroke-width="3"/>
+                                <rect x="15" y="85" width="20" height="20" rx="1" fill="#00853f" opacity="0.5"/>
+                                <!-- Points centraux -->
+                                <rect x="50" y="10" width="5" height="5" fill="#00853f"/>
+                                <rect x="58" y="10" width="5" height="5" fill="#00853f"/>
+                                <rect x="50" y="18" width="5" height="5" fill="#00853f"/>
+                                <rect x="58" y="26" width="5" height="5" fill="#00853f"/>
+                                <rect x="10" y="50" width="5" height="5" fill="#00853f"/>
+                                <rect x="18" y="58" width="5" height="5" fill="#00853f"/>
+                                <rect x="10" y="66" width="5" height="5" fill="#00853f"/>
+                                <rect x="50" y="50" width="5" height="5" fill="#00853f"/>
+                                <rect x="58" y="58" width="5" height="5" fill="#00853f"/>
+                                <rect x="66" y="50" width="5" height="5" fill="#00853f"/>
+                                <rect x="74" y="58" width="5" height="5" fill="#00853f"/>
+                                <rect x="82" y="50" width="5" height="5" fill="#00853f"/>
+                                <rect x="90" y="58" width="5" height="5" fill="#00853f"/>
+                                <rect x="98" y="50" width="5" height="5" fill="#00853f"/>
+                                <rect x="106" y="58" width="5" height="5" fill="#00853f"/>
+                                <rect x="50" y="66" width="5" height="5" fill="#00853f"/>
+                                <rect x="66" y="66" width="5" height="5" fill="#00853f"/>
+                                <rect x="50" y="74" width="5" height="5" fill="#00853f"/>
+                                <rect x="58" y="82" width="5" height="5" fill="#00853f"/>
+                                <rect x="66" y="90" width="5" height="5" fill="#00853f"/>
+                                <rect x="74" y="82" width="5" height="5" fill="#00853f"/>
+                                <rect x="82" y="90" width="5" height="5" fill="#00853f"/>
+                                <rect x="90" y="82" width="5" height="5" fill="#00853f"/>
+                                <rect x="98" y="90" width="5" height="5" fill="#00853f"/>
+                                <rect x="106" y="82" width="5" height="5" fill="#00853f"/>
+                            </svg>
+                        </div>
+                        <p class="qr-hint">Scannez avec votre application d'authentification</p>
+                    </div>
+                    <div class="twofa-manual">
+                        <p class="twofa-label">Clé manuelle :</p>
+                        <div class="twofa-secret-row">
+                            <code class="twofa-secret" id="totp-secret">JBSW Y3DP EHPK 3PXP</code>
+                            <button class="icon-btn" id="copy-secret-btn" title="Copier la clé">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                            </button>
+                        </div>
+                        <div class="form-group" style="margin-top:20px">
+                            <label>Code de vérification (6 chiffres)</label>
+                            <div class="otp-inputs" id="otp-inputs">
+                                <input class="otp-digit" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                                <input class="otp-digit" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                                <input class="otp-digit" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                                <span class="otp-sep">—</span>
+                                <input class="otp-digit" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                                <input class="otp-digit" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                                <input class="otp-digit" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                            </div>
+                            <span class="field-error hidden" id="otp-error">Code invalide. Réessayez.</span>
+                        </div>
+                        <div class="form-actions">
+                            <button class="btn-outline" id="twofa-cancel-btn">Annuler</button>
+                            <button class="btn-primary" id="twofa-verify-btn">Vérifier et activer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SECTION SESSIONS ═══ -->
+        <section class="settings-section hidden" id="section-sessions">
+            <div class="settings-section-header">
+                <h2>Sessions actives</h2>
+                <p>Appareils actuellement connectés à votre compte.</p>
+            </div>
+
+            <div class="settings-card">
+                <div class="sessions-list" id="sessions-list">
+                    <!-- Injecté par JS -->
+                </div>
+                <div class="form-actions" style="margin-top:20px">
+                    <button class="btn-outline danger-outline" id="revoke-all-btn">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+                        Déconnecter tous les autres appareils
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SECTION DANGER ═══ -->
+        <section class="settings-section hidden" id="section-danger">
+            <div class="settings-section-header">
+                <h2>Zone de danger</h2>
+                <p>Actions irréversibles. Procédez avec précaution.</p>
+            </div>
+
+            <div class="settings-card danger-card">
+                <div class="danger-row">
+                    <div>
+                        <h3 class="danger-title">Exporter le coffre</h3>
+                        <p class="danger-desc">Télécharger une copie chiffrée de tous vos mots de passe au format JSON.</p>
+                    </div>
+                    <button class="btn-outline" id="export-btn">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Exporter
+                    </button>
+                </div>
+            </div>
+
+            <div class="settings-card danger-card">
+                <div class="danger-row">
+                    <div>
+                        <h3 class="danger-title">Vider le coffre</h3>
+                        <p class="danger-desc">Supprimer tous les éléments du coffre. Cette action est irréversible.</p>
+                    </div>
+                    <button class="btn-outline btn-danger" id="clear-vault-btn">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+                        Vider le coffre
+                    </button>
+                </div>
+            </div>
+
+            <div class="settings-card danger-card">
+                <div class="danger-row">
+                    <div>
+                        <h3 class="danger-title" style="color:#f87171">Supprimer le compte</h3>
+                        <p class="danger-desc">Supprimer définitivement votre compte et toutes vos données. Irréversible.</p>
+                    </div>
+                    <button class="btn-danger-solid" id="delete-account-btn">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+                        Supprimer le compte
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Modal confirmation danger -->
+<div class="modal-overlay hidden" id="confirm-overlay">
+    <div class="modal" style="max-width:420px" id="confirm-modal">
+        <div class="modal-header">
+            <h2 id="confirm-title">Confirmer l'action</h2>
+            <button class="modal-close" id="confirm-close">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p id="confirm-message" style="color:var(--gray-2);font-size:0.9rem;line-height:1.6"></p>
+            <div class="form-group" style="margin-top:16px">
+                <label id="confirm-input-label" style="font-size:0.82rem;color:var(--gray-1)">Tapez <strong id="confirm-keyword" style="color:#f87171">SUPPRIMER</strong> pour confirmer</label>
+                <input type="text" id="confirm-input" placeholder="Tapez ici..." style="margin-top:8px;padding:10px 14px;width:100%;background:rgba(0,0,0,0.25);border:1px solid var(--border);border-radius:8px;color:white;font-family:var(--font-body);outline:none">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-outline" id="confirm-cancel">Annuler</button>
+            <button class="btn-danger-solid" id="confirm-ok" disabled>Confirmer</button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast hidden" id="toast">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+    <span id="toast-text">Enregistré !</span>
+</div>
+
+<script src="settings.js"></script>
+</body>
+</html>

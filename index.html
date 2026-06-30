@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SenCadenas | Le gestionnaire de mots de passe du Sénégal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!--NAVBAR-->
+    <header class="navbar" id="navbar">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z" fill="#00853f" opacity="0.2"/>
+                    <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z" stroke="#00853f" stroke-width="1.5" fill="none"/>
+                    <rect x="9" y="10" width="6" height="5" rx="1" fill="#00853f"/>
+                    <path d="M10 10V8.5a2 2 0 014 0V10" stroke="#00853f" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <span class="logo-text">Sen<span class="logo-accent">Cadenas</span></span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="#features">Fonctionnalités</a>
+            <a href="#how">Comment ça marche</a>
+            <a href="#security">Sécurité</a>
+        </nav>
+
+        <div class="nav-auth">
+            <a href="login.html" class="btn-outline">Se connecter</a>
+            <a href="inscription.html" class="btn-primary">S'inscrire</a>
+        </div>
+
+        <button class="nav-burger" id="burger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <!--HERO-->
+    <main>
+        <section class="hero" id="hero">
+            <div class="hero-bg-grid"></div>
+            <div class="hero-glow"></div>
+
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Chiffrement de bout en bout · Fait au Sénégal
+                </div>
+
+                <h1 class="hero-title">
+                    Vos mots de passe,<br>
+                    <span class="title-highlight">blindés.</span>
+                </h1>
+
+                <p class="hero-description">
+                    SenCadenas garde vos identifiants sous clé avec un chiffrement AES-256.
+                    Fini les post-it, les mots de passe réutilisés, et les nuits blanches après un hack.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="inscription.html" class="btn-primary large">
+                        Commencer gratuitement
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#how" class="btn-ghost">Informations Supplementaires</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">AES-256</span>
+                        <span class="stat-label">Chiffrement</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Données vendues</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Open Source</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vault preview -->
+            <div class="vault-preview" id="vault-preview">
+                <div class="vault-chrome">
+                    <div class="chrome-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="chrome-url">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00853f" stroke-width="2">
+                            <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z"/>
+                        </svg>
+                        sencadenas.sn/vault
+                    </div>
+                </div>
+                <div class="vault-body">
+                    <div class="vault-sidebar">
+                        <div class="sidebar-item active">
+                            <span>🔑</span> Tous
+                        </div>
+                        <div class="sidebar-item">
+                            <span>⭐</span> Favoris
+                        </div>
+                        <div class="sidebar-item">
+                            <span>💳</span> Cartes
+                        </div>
+                        <div class="sidebar-item">
+                            <span>📝</span> Notes
+                        </div>
+                    </div>
+                    <div class="vault-main">
+                        <div class="vault-search">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+                            </svg>
+                            <span>Rechercher...</span>
+                        </div>
+                        <div class="vault-entry">
+                            <div class="entry-icon" style="background:#1877f2">f</div>
+                            <div class="entry-info">
+                                <span class="entry-name">Facebook</span>
+                                <span class="entry-user"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c7a6aaaea9a6b3a6e9a3aea6ababa887a0aaa6aeabe9a4a8aa">[email&#160;protected]</a></span>
+                            </div>
+                            <span class="entry-lock">🔒</span>
+                        </div>
+                        <div class="vault-entry">
+                            <div class="entry-icon" style="background:#e4405f">ig</div>
+                            <div class="entry-info">
+                                <span class="entry-name">Instagram</span>
+                                <span class="entry-user">@aminata_dk</span>
+                            </div>
+                            <span class="entry-lock">🔒</span>
+                        </div>
+                        <div class="vault-entry">
+                            <div class="entry-icon" style="background:#ff6600">wave</div>
+                            <div class="entry-info">
+                                <span class="entry-name">Wave Mobile Money</span>
+                                <span class="entry-user">+221 77 123 45 67</span>
+                            </div>
+                            <span class="entry-lock">🔒</span>
+                        </div>
+                        <div class="vault-entry">
+                            <div class="entry-icon" style="background:#00853f">sn</div>
+                            <div class="entry-info">
+                                <span class="entry-name">Sénégal Services</span>
+                                <span class="entry-user">aminata.diallo</span>
+                            </div>
+                            <span class="entry-lock">🔒</span>
+                        </div>
+                        <div class="vault-add-btn">+ Ajouter un mot de passe</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--FEATURES-->
+        <section class="features" id="features">
+            <div class="section-header">
+                <span class="section-tag">Fonctionnalités</span>
+                <h2>Tout ce dont vous avez besoin,<br>rien de superflu.</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card card-big">
+                    <div class="feature-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z"/>
+                        </svg>
+                    </div>
+                    <h3>Chiffrement AES-256</h3>
+                    <p>Le même standard utilisé par les banques et les gouvernements. Vos données sont chiffrées avant même de quitter votre appareil.</p>
+                    <div class="feature-visual">
+                        <div class="encrypt-demo">
+                            <span class="plain">monMotDePasse123</span>
+                            <span class="arrow">→</span>
+                            <span class="cipher">3f8a$#kL9mP2qR...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="5" y="11" width="14" height="10" rx="2"/>
+                            <path d="M8 11V7a4 4 0 018 0v4"/>
+                        </svg>
+                    </div>
+                    <h3>Coffre-fort personnel</h3>
+                    <p>Stockez mots de passe, codes PIN, notes secrètes et informations de carte bancaire en un seul endroit.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3>Vérification des fuites</h3>
+                    <p>On vérifie si vos mots de passe ont été compromis dans des fuites de données connues et vous alerte immédiatement.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2a4 4 0 100 8 4 4 0 000-8zM6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/>
+                        </svg>
+                    </div>
+                    <h3>Partage sécurisé</h3>
+                    <p>Partagez des accès avec votre famille ou collègues sans jamais révéler le mot de passe en clair.</p>
+                </div>
+
+                <div class="feature-card card-green">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="3" width="20" height="14" rx="2"/>
+                            <path d="M8 21h8M12 17v4"/>
+                        </svg>
+                    </div>
+                    <h3>Générateur de mots de passe</h3>
+                    <p>Créez des mots de passe forts et uniques en un clic. Longueur, symboles, chiffres — vous choisissez.</p>
+                </div>
+            </div>
+        </section>
+
+        <!--HOW IT WORKS-->
+        <section class="how" id="how">
+            <div class="section-header">
+                <span class="section-tag">Comment ça marche</span>
+                <h2>3 étapes, c'est tout.</h2>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Créez votre compte</h3>
+                        <p>Inscrivez-vous avec votre email et définissez un mot de passe maître fort. C'est le seul mot de passe que vous aurez à retenir.</p>
+                    </div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Ajoutez vos identifiants</h3>
+                        <p>Importez ou saisissez vos mots de passe existants. SenCadenas les chiffre et les stocke de manière sécurisée dans votre coffre.</p>
+                    </div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Accédez partout, sereinement</h3>
+                        <p>Connectez-vous à tous vos comptes en un clic. SenCadenas remplit les formulaires automatiquement et vous alerte si un site est compromis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--SECURITY BANNER-->
+        <section class="security-banner" id="security">
+            <div class="banner-content">
+                <div class="banner-left">
+                    <span class="section-tag light">Sécurité</span>
+                    <h2>Architecture Zero-Knowledge</h2>
+                    <p>Nous ne pouvons pas lire vos données — même si nous le voulions. Votre mot de passe maître ne quitte jamais votre appareil. Seul vous avez la clé.</p>
+                    <ul class="security-list">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00853f" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                            Chiffrement côté client (PBKDF2 + AES-256-GCM)
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00853f" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                            Authentification à deux facteurs (2FA)
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00853f" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                            Transmission HTTPS uniquement
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00853f" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                            Protection contre les attaques par force brute
+                        </li>
+                    </ul>
+                </div>
+                <div class="banner-right">
+                    <div class="lock-visual">
+                        <div class="lock-ring"></div>
+                        <div class="lock-body">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z" fill="rgba(0,133,63,0.15)" stroke="#00853f" stroke-width="1.2"/>
+                                <rect x="8.5" y="10.5" width="7" height="6" rx="1" fill="#00853f"/>
+                                <path d="M10 10.5V8.5a2 2 0 014 0v2" stroke="#00853f" stroke-width="1.5" stroke-linecap="round"/>
+                                <circle cx="12" cy="13.5" r="1" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="lock-particles">
+                            <span class="particle"></span>
+                            <span class="particle"></span>
+                            <span class="particle"></span>
+                            <span class="particle"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--CTA-->
+        <section class="cta">
+            <h2>Commencez à protéger<br>vos comptes aujourd'hui.</h2>
+            <p>Gratuit. Sécurisé. Sénégalais.</p>
+            <a href="inscription.html" class="btn-primary large">
+                Créer mon coffre gratuit
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </section>
+    </main>
+
+    <!--FOOTER-->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z" fill="#00853f" opacity="0.2"/>
+                            <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z" stroke="#00853f" stroke-width="1.5" fill="none"/>
+                            <rect x="9" y="10" width="6" height="5" rx="1" fill="#00853f"/>
+                            <path d="M10 10V8.5a2 2 0 014 0V10" stroke="#00853f" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Sen<span class="logo-accent">Cadenas</span></span>
+                </div>
+                <p>Le gestionnaire de mots de passe<br>le plus fiable du Sénégal.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Produit</h4>
+                    <a href="#features">Fonctionnalités</a>
+                    <a href="#security">Sécurité</a>
+                    <a href="#">Tarifs</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Compte</h4>
+                    <a href="inscription.html">S'inscrire</a>
+                    <a href="login.html">Se connecter</a>
+                    <a href="#">Mot de passe oublié</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Légal</h4>
+                    <a href="#">Confidentialité</a>
+                    <a href="#">Conditions d'utilisation</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 SenCadenas</span>
+            <span>Dakar, Sénégal 🇸🇳</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

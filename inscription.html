@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S'inscrire | SenCadenas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-page">
+
+    <!-- ── Navbar légère ── -->
+    <header class="auth-navbar">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z" fill="#00853f" opacity="0.2"/>
+                    <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z" stroke="#00853f" stroke-width="1.5" fill="none"/>
+                    <rect x="9" y="10" width="6" height="5" rx="1" fill="#00853f"/>
+                    <path d="M10 10V8.5a2 2 0 014 0V10" stroke="#00853f" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <span class="logo-text">Sen<span class="logo-accent">Cadenas</span></span>
+        </a>
+        <a href="login.html" class="btn-outline" style="font-size:0.85rem; padding:8px 18px;">Se connecter</a>
+    </header>
+
+    <!-- ── Layout principal ── -->
+    <div class="auth-layout">
+
+        <!-- Panneau gauche : branding -->
+        <aside class="auth-side">
+            <div class="auth-side-content">
+                <div class="side-badge">
+                    <span class="badge-dot"></span> Chiffrement de bout en bout
+                </div>
+                <h2>Votre coffre,<br>votre forteresse.</h2>
+                <p>Rejoignez SenCadenas et ne mémorisez plus jamais un mot de passe — sauf un seul.</p>
+
+                <ul class="side-features">
+                    <li>
+                        <div class="side-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00853f" stroke-width="2"><path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6L12 2z"/></svg>
+                        </div>
+                        Chiffrement AES-256-GCM
+                    </li>
+                    <li>
+                        <div class="side-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00853f" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                        </div>
+                        Architecture Zero-Knowledge
+                    </li>
+                    <li>
+                        <div class="side-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00853f" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        </div>
+                        Accès 24h/24 depuis n'importe où
+                    </li>
+                    <li>
+                        <div class="side-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00853f" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                        </div>
+                        Gratuit pour toujours (plan de base)
+                    </li>
+                </ul>
+
+                <!-- Mini-preview décorative -->
+                <div class="side-preview">
+                    <div class="preview-row">
+                        <div class="prev-icon" style="background:#1877f2">f</div>
+                        <div class="prev-info">
+                            <span>Facebook</span>
+                            <span class="prev-pass">••••••••••••</span>
+                        </div>
+                        <span class="prev-badge">Sécurisé</span>
+                    </div>
+                    <div class="preview-row">
+                        <div class="prev-icon" style="background:#ff6600">W</div>
+                        <div class="prev-info">
+                            <span>Wave</span>
+                            <span class="prev-pass">••••••••</span>
+                        </div>
+                        <span class="prev-badge">Sécurisé</span>
+                    </div>
+                    <div class="preview-row">
+                        <div class="prev-icon" style="background:#00853f">SN</div>
+                        <div class="prev-info">
+                            <span>Sénégal Services</span>
+                            <span class="prev-pass">••••••••••</span>
+                        </div>
+                        <span class="prev-badge">Sécurisé</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Panneau droit : formulaire -->
+        <main class="auth-form-panel">
+            <div class="auth-card" id="register-card">
+                <div class="auth-card-header">
+                    <h1>Créer un compte</h1>
+                    <p>Déjà inscrit ? <a href="login.html">Se connecter</a></p>
+                </div>
+
+                <!-- Message d'erreur / succès -->
+                <div class="auth-alert hidden" id="alert-box">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                    <span id="alert-text"></span>
+                </div>
+
+                <form id="register-form" novalidate>
+
+                    <!-- Nom complet -->
+                    <div class="form-group">
+                        <label for="fullname">Nom complet</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <input type="text" id="fullname" name="fullname"
+                                placeholder="Vieux Alia Samb"
+                                autocomplete="name" required>
+                        </div>
+                        <span class="field-error" id="err-fullname"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Adresse e-mail</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 7 10-7"/>
+                            </svg>
+                            <input type="email" id="email" name="email"
+                                placeholder="vieuxalia@exemple.sn"
+                                autocomplete="email" required>
+                        </div>
+                        <span class="field-error" id="err-email"></span>
+                    </div>
+
+                    <!-- Mot de passe maître -->
+                    <div class="form-group">
+                        <label for="master-password">
+                            Mot de passe maître
+                            <span class="label-hint" id="hint-toggle" tabindex="0">C'est quoi ?</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+                            </svg>
+                            <input type="password" id="master-password" name="master-password"
+                                placeholder="Minimum 12 caractères"
+                                autocomplete="new-password" required>
+                            <button type="button" class="toggle-password" aria-label="Afficher le mot de passe" data-target="master-password">
+                                <svg class="eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- Tooltip -->
+                        <div class="hint-tooltip hidden" id="master-hint">
+                            🔑 Le mot de passe maître est <strong>le seul</strong> que vous devez retenir. Il chiffre tout votre coffre — nous ne pouvons pas le récupérer si vous l'oubliez.
+                        </div>
+
+                        <!-- Jauge de force -->
+                        <div class="strength-meter" id="strength-meter">
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strength-fill"></div>
+                            </div>
+                            <span class="strength-label" id="strength-label">Entrez un mot de passe</span>
+                        </div>
+                        <span class="field-error" id="err-password"></span>
+                    </div>
+
+                    <!-- Confirmation -->
+                    <div class="form-group">
+                        <label for="confirm-password">Confirmer le mot de passe</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
+                            </svg>
+                            <input type="password" id="confirm-password" name="confirm-password"
+                                placeholder="Répétez le mot de passe"
+                                autocomplete="new-password" required>
+                            <button type="button" class="toggle-password" aria-label="Afficher le mot de passe" data-target="confirm-password">
+                                <svg class="eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <span class="field-error" id="err-confirm"></span>
+                    </div>
+
+                    <!-- CGU -->
+                    <div class="form-check">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">
+                            J'accepte les <a href="#">conditions d'utilisation</a> et la <a href="#">politique de confidentialité</a>
+                        </label>
+                    </div>
+                    <span class="field-error" id="err-terms"></span>
+
+                    <!-- Bouton submit -->
+                    <button type="submit" class="btn-primary large full-width" id="submit-btn">
+                        <span id="btn-text">Créer mon coffre</span>
+                        <svg id="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                        <svg id="btn-spinner" class="spinner hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>
